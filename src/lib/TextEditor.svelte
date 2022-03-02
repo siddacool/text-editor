@@ -27,9 +27,5 @@
     padding: 16px;
     min-height: 400px;
     background-color: aliceblue;
-
-    div {
-      background-color: red;
-    }
   }
 </style>
