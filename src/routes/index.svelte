@@ -1,8 +1,6 @@
-<script lang="ts">
-  import TextEditor from '$lib/TextEditor.svelte';
-</script>
-
-<TextEditor />
+{#await import('$lib/TextEditor.svelte') then c}
+  <svelte:component this={c.default} />
+{/await}
 
 <style>
   :global(*) {
