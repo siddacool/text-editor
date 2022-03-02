@@ -1,4 +1,5 @@
 import { writable, derived } from 'svelte/store';
+import { formatStringToHTML } from '~/utils';
 
 const initialState = ['Hello', 'Goodby', 'Hi'];
 
@@ -20,7 +21,7 @@ function createBlocks() {
             return sOpt;
           }
 
-          return val;
+          return formatStringToHTML(val);
         });
       }),
   };
