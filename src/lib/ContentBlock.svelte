@@ -1,13 +1,10 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
+  import { PluginDiv } from '~/Plugins';
   export let html: string;
   export let index: number;
-
-  const blocks = getContext('blocks');
-
-  const handleBlur = () => {
-    blocks.modify(index, html);
-  };
+  const { component } = PluginDiv;
 </script>
 
-<div class="content-block" contenteditable="true" bind:innerHTML={html} on:blur={handleBlur} />
+<svelte:component this={component} {html} {index} />
+
+<!-- <div class="content-block" contenteditable="true" bind:innerHTML={html} on:blur={handleBlur} /> -->
