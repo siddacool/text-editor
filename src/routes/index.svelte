@@ -1,7 +1,15 @@
 <script lang="ts">
-  let state = ['Hello', 'Goodby', 'Hi'];
+  import type { BlockState } from '~/types';
 
-  const onChange = (val: string[]) => {
+  let state: BlockState = [
+    {
+      id: '1',
+      type: 'plugin-div',
+      textData: 'yyyy',
+    },
+  ];
+
+  const onChange = (val: BlockState) => {
     state = [...val];
   };
 </script>

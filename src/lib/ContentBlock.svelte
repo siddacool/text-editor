@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { PluginDiv } from '~/Plugins';
-  export let html: string;
+  import { PluginDiv, Plugins } from '~/Plugins';
+  import type { Block } from '~/types';
+  export let block: Block;
   export let index: number;
-  const { component } = PluginDiv;
+  const { type } = block;
+  const { component } = Plugins.find((p) => p.id === type) || PluginDiv;
 </script>
 
-<svelte:component this={component} {html} {index} />
-
-<!-- <div class="content-block" contenteditable="true" bind:innerHTML={html} on:blur={handleBlur} /> -->
+<svelte:component this={component} {block} {index} />

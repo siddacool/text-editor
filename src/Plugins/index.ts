@@ -1,10 +1,5 @@
-import PluginDivComponent from './PluginDiv.svelte';
+import PluginDivImport from './PluginDiv';
 
-export const PluginDiv = {
-  id: 'plugin-div',
-  name: 'Div',
-  description: 'Plugin Div',
-  component: PluginDivComponent,
-};
+export const PluginDiv = PluginDivImport;
 
 export const Plugins = [PluginDiv];

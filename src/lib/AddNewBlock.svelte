@@ -1,9 +1,15 @@
 <script lang="ts">
+  import type { BlockContext } from '~/types';
   import { getContext } from 'svelte';
-  const blocks = getContext('blocks');
+  import { Plugins } from '~/Plugins';
+  const blocks: BlockContext = getContext('blocks');
 </script>
 
-<button on:click={() => blocks.add('Item')}>Add New</button>
+<div>
+  {#each Plugins as { id, name }}
+    <button on:click={() => blocks.add(id, { focus: true })}>{name}</button>
+  {/each}
+</div>
 
 <style>
 </style>

@@ -21,7 +21,7 @@
 
 <div class="text-editor">
   {#each $blocks as block, index}
-    <ContentBlock html={block} {index} />
+    <ContentBlock {block} {index} />
   {/each}
   <br />
 
