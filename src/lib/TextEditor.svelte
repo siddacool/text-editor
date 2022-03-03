@@ -1,19 +1,22 @@
 <script lang="ts">
-  import { setContext } from 'svelte';
+  import type { BlockState, StateOnChange } from '~/types';
+  import { setContext, onDestroy } from 'svelte';
   import { createBlocks } from '~/contexts/blocks';
   import AddNewBlock from './AddNewBlock.svelte';
   import ContentBlock from './ContentBlock.svelte';
 
-  export let value = [];
-  export let onChange = (val) => {};
+  export let value: BlockState = [];
+  export let onChange: StateOnChange = (val) => {};
 
-  const blocks = createBlocks(value, onChange);
+  const blocks = createBlocks(value);
 
   setContext('blocks', blocks);
 
-  const onSave = (val) => {
-    onChange(val);
-  };
+  const unsubscribe = blocks.subscribe((data) => {
+    onChange(data);
+  });
+
+  onDestroy(unsubscribe);
 </script>
 
 <div class="text-editor">
@@ -23,8 +26,6 @@
   <br />
 
   <AddNewBlock />
-
-  <button on:click={() => onSave($blocks)}>Save</button>
 
   <br />
   <br />

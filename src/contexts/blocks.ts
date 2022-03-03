@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 import type { BlockState } from '~/types';
 import { formatStringToHTML } from '~/utils';
 
-export function createBlocks(initialState: BlockState, onChange: StateOnChange) {
+export function createBlocks(initialState: BlockState) {
   const { subscribe, update } = writable(initialState);
 
   return {
