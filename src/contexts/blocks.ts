@@ -1,9 +1,8 @@
-import { writable, derived } from 'svelte/store';
+import { writable } from 'svelte/store';
+import type { BlockState } from '~/types';
 import { formatStringToHTML } from '~/utils';
 
-const initialState = ['Hello', 'Goodby', 'Hi'];
-
-function createBlocks() {
+export function createBlocks(initialState: BlockState, onChange: StateOnChange) {
   const { subscribe, update } = writable(initialState);
 
   return {
@@ -26,7 +25,3 @@ function createBlocks() {
       }),
   };
 }
-
-export const blocks = createBlocks();
-
-export const blocksJson = derived(blocks, ($blocks) => JSON.stringify($blocks));

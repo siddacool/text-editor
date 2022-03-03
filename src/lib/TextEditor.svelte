@@ -1,7 +1,19 @@
 <script lang="ts">
-  import { blocks, blocksJson } from '~/stores/blocks';
+  import { setContext } from 'svelte';
+  import { createBlocks } from '~/contexts/blocks';
   import AddNewBlock from './AddNewBlock.svelte';
   import ContentBlock from './ContentBlock.svelte';
+
+  export let value = [];
+  export let onChange = (val) => {};
+
+  const blocks = createBlocks(value, onChange);
+
+  setContext('blocks', blocks);
+
+  const onSave = (val) => {
+    onChange(val);
+  };
 </script>
 
 <div class="text-editor">
@@ -12,11 +24,13 @@
 
   <AddNewBlock />
 
+  <button on:click={() => onSave($blocks)}>Save</button>
+
   <br />
   <br />
   <div>
     Preview
-    <div>{$blocksJson}</div>
+    <div>{JSON.stringify($blocks)}</div>
   </div>
 </div>
 

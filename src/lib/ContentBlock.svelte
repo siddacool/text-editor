@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { blocks } from '~/stores/blocks';
+  import { getContext } from 'svelte';
   export let html: string;
   export let index: number;
+
+  const blocks = getContext('blocks');
 
   const handleBlur = () => {
     blocks.modify(index, html);
