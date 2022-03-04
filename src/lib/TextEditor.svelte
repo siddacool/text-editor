@@ -23,6 +23,8 @@
 
   let items = $blocks;
 
+  let dragDisabled = true;
+
   function handleDndConsider(e) {
     items = e.detail.items;
   }
@@ -31,6 +33,9 @@
     items = e.detail.items;
 
     blocks.forceSet(items);
+
+    // Ensure dragging is stopped on drag finish
+    dragDisabled = true;
   }
 
   function handleAddAction() {
@@ -38,6 +43,14 @@
 
     items = [...$blocks];
   }
+
+  const startDrag = () => {
+    dragDisabled = false;
+  };
+
+  const stopDrag = () => {
+    dragDisabled = true;
+  };
 </script>
 
 <div class="text-editor">
@@ -47,7 +60,7 @@
     on:finalize={handleDndFinalize}
   >
     {#each items as block (block.id)}
-      <ContentBlock {block} />
+      <ContentBlock {block} {startDrag} {stopDrag} />
     {/each}
   </section>
   <br />
@@ -69,5 +82,9 @@
     padding: 16px;
     min-height: 400px;
     background-color: aliceblue;
+  }
+
+  section {
+    position: relative;
   }
 </style>
