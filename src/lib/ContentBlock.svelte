@@ -9,22 +9,28 @@
 </script>
 
 <div class="block">
-  <div
-    class="handle"
-    on:mousedown={startDrag}
-    on:touchstart={startDrag}
-    on:mouseup={stopDrag}
-    on:touchend={stopDrag}
-  />
+  <div class="options">
+    <div
+      class="handle"
+      on:mousedown={startDrag}
+      on:touchstart={startDrag}
+      on:mouseup={stopDrag}
+      on:touchend={stopDrag}
+    />
+  </div>
 
   <svelte:component this={component} {block} />
 </div>
 
 <style lang="scss">
+  .options {
+    position: absolute;
+    left: -37px;
+    margin-top: 4px;
+  }
+
   .handle {
     cursor: grab;
-    position: absolute;
-    left: -12px;
     width: 1em;
     height: 0.5em;
     background-color: grey;

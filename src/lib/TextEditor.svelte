@@ -78,10 +78,17 @@
 <style lang="scss">
   .text-editor {
     display: block;
-    width: 100%;
+    width: calc(100% - 40px);
     padding: 16px;
     min-height: 400px;
     background-color: aliceblue;
+    max-width: 800px;
+    margin-left: auto;
+    position: relative;
+
+    @media (min-width: 1000px) {
+      margin-right: auto;
+    }
   }
 
   section {
