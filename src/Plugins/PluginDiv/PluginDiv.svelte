@@ -22,6 +22,10 @@
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
+      if (e.shiftKey) {
+        return;
+      }
+
       usernameInput.blur();
       addBlockPosition.forceSet(index);
     }
