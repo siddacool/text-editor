@@ -42,3 +42,9 @@
   bind:this={usernameInput}
   on:keydown={handleKeyDown}
 />
+
+<style>
+  .plugin-div {
+    margin-bottom: 10px;
+  }
+</style>

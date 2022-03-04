@@ -54,6 +54,10 @@
   const stopDrag = () => {
     dragDisabled = true;
   };
+
+  $: {
+    console.log(items);
+  }
 </script>
 
 <div class="text-editor">
@@ -66,10 +70,8 @@
       <ContentBlock {block} {startDrag} {stopDrag} {index} />
 
       {#if $addBlockPosition === null && index === items.length - 1}
-        <br />
         <AddNewBlock onAdd={handleAddAction} />
       {:else if ($addBlockPosition || $addBlockPosition === 0) && $addBlockPosition === index}
-        <br />
         <AddNewBlock onAdd={handleAddAction} />
       {/if}
     {/each}
@@ -86,13 +88,20 @@
 <style lang="scss">
   .text-editor {
     display: block;
-    width: calc(100% - 40px);
+    width: 100%;
     padding: 16px;
     min-height: 400px;
-    background-color: aliceblue;
+    background-color: #fff;
     max-width: 800px;
     margin-left: auto;
     position: relative;
+    height: calc(100vh - 60px);
+    margin-top: 30px;
+    overflow: auto;
+    z-index: 100;
+    padding-left: 40px;
+    border-radius: 10px;
+    border: 1px solid #bcbcbc;
 
     @media (min-width: 1000px) {
       margin-right: auto;
@@ -101,5 +110,6 @@
 
   section {
     position: relative;
+    outline: none !important;
   }
 </style>
