@@ -13,13 +13,17 @@ specifiers:
   sass: ^1.49.9
   svelte: ^3.44.0
   svelte-check: ^2.2.6
+  svelte-dnd-action: ^0.9.17
   svelte-preprocess: ^4.10.1
   tslib: ^2.3.1
   typescript: ~4.5.4
 
+dependencies:
+  svelte-dnd-action: 0.9.17
+
 devDependencies:
   '@sveltejs/adapter-static': 1.0.0-next.28
-  '@sveltejs/kit': 1.0.0-next.288_sass@1.49.9+svelte@3.46.4
+  '@sveltejs/kit': 1.0.0-next.291_sass@1.49.9+svelte@3.46.4
   '@typescript-eslint/eslint-plugin': 5.13.0_d80048fb2dc47ff898dcd38041f9ffe2
   '@typescript-eslint/parser': 5.13.0_eslint@7.32.0+typescript@4.5.5
   eslint: 7.32.0
@@ -123,8 +127,8 @@ packages:
       tiny-glob: 0.2.9
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.288_sass@1.49.9+svelte@3.46.4:
-    resolution: {integrity: sha512-6ky4CUFNGKoU1QV+fY2LOIB7atHdUCIMRx3pX21B2g9yZzQzkot0zHBrMMBSKF0/4Wx19PLEWrlGxlhakYmi8Q==}
+  /@sveltejs/kit/1.0.0-next.291_sass@1.49.9+svelte@3.46.4:
+    resolution: {integrity: sha512-mFd1EJbxoyPGiomYwYhZnjNLPYahCC2gHfKvPetguL/7BCHcyUjjYQbwTTmjVxtgBs0oLzKVA9bt45gpr9JqBQ==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
@@ -1560,6 +1564,10 @@ packages:
       - stylus
       - sugarss
     dev: true
+
+  /svelte-dnd-action/0.9.17:
+    resolution: {integrity: sha512-9OHClTATwkUfZdW0U4j3iYa4IUE3ZRoqZkT0fzhjDvlgI80S5WR0M0wC0vN2+Jp0TUhkhqoC+1KULUpYsTIseQ==}
+    dev: false
 
   /svelte-hmr/0.14.9_svelte@3.46.4:
     resolution: {integrity: sha512-bKE9+4qb4sAnA+TKHiYurUl970rjA0XmlP9TEP7K/ncyWz3m81kA4HOgmlZK/7irGK7gzZlaPDI3cmf8fp/+tg==}

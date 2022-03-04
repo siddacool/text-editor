@@ -2,7 +2,6 @@
   import { getContext, onMount } from 'svelte';
   import type { Block, BlockContext } from '~/types';
   export let block: Block;
-  export let index: number;
   let textData = block.textData;
   let usernameInput;
 

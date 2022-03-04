@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { dndzone } from 'svelte-dnd-action';
   import type { BlockState, StateOnChange } from '~/types';
   import { setContext, onDestroy } from 'svelte';
   import { createBlocks } from '~/contexts/blocks';
@@ -17,15 +18,41 @@
   });
 
   onDestroy(unsubscribe);
+
+  const flipDurationMs = 300;
+
+  let items = $blocks;
+
+  function handleDndConsider(e) {
+    items = e.detail.items;
+  }
+
+  function handleDndFinalize(e) {
+    items = e.detail.items;
+
+    blocks.forceSet(items);
+  }
+
+  function handleAddAction() {
+    console.log('yo');
+
+    items = [...$blocks];
+  }
 </script>
 
 <div class="text-editor">
-  {#each $blocks as block, index}
-    <ContentBlock {block} {index} />
-  {/each}
+  <section
+    use:dndzone={{ items, flipDurationMs }}
+    on:consider={handleDndConsider}
+    on:finalize={handleDndFinalize}
+  >
+    {#each items as block (block.id)}
+      <ContentBlock {block} />
+    {/each}
+  </section>
   <br />
 
-  <AddNewBlock />
+  <AddNewBlock onAdd={handleAddAction} />
 
   <br />
   <br />

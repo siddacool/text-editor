@@ -3,10 +3,11 @@ import type { BlockState } from '~/types';
 import { formatStringToHTML } from '~/utils';
 
 export function createBlocks(initialState: BlockState) {
-  const { subscribe, update } = writable(initialState);
+  const { subscribe, update, set } = writable(initialState);
 
   return {
     subscribe,
+    forceSet: (data) => set(data),
     add: (
       type: string,
       config: {

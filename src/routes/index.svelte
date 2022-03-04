@@ -7,6 +7,21 @@
       type: 'plugin-div',
       textData: 'yyyy',
     },
+    {
+      id: '2',
+      type: 'plugin-div',
+      textData: 'afawfawf',
+    },
+    {
+      id: '3',
+      type: 'plugin-div',
+      textData: 'yawfawfawyyy',
+    },
+    {
+      id: '4',
+      type: 'plugin-div',
+      textData: 'yawfawfyyy',
+    },
   ];
 
   const onChange = (val: BlockState) => {
