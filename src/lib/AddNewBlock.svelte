@@ -1,17 +1,21 @@
 <script lang="ts">
   import type { BlockContext } from '~/types';
-  import { getContext } from 'svelte';
+  import { getContext, onMount } from 'svelte';
   import { Plugins } from '~/Plugins';
   const blocks: BlockContext = getContext('blocks');
+  const addBlockPosition = getContext('addBlockPosition');
   export let onAdd;
   let inputText = '';
   let showDropDown = false;
+  let usernameInput;
 
   const handleAdd = (id) => {
     showDropDown = false;
     inputText = '';
-    blocks.add(id, { focus: true });
+
+    blocks.add(id, { focus: true, at: $addBlockPosition });
     onAdd();
+    addBlockPosition.forceSet(null);
   };
 
   const handleKeyDown = (e) => {
@@ -19,11 +23,14 @@
       showDropDown = true;
     } else if (e.key === 'Enter') {
       e.preventDefault();
-      inputText = '';
-      blocks.add('plugin-div', { focus: true });
+      blocks.add('plugin-div', { focus: true, at: $addBlockPosition, textData: inputText });
       onAdd();
+      inputText = '';
+      addBlockPosition.forceSet(null);
     }
   };
+
+  onMount(() => usernameInput.focus());
 </script>
 
 <div>
@@ -41,6 +48,7 @@
       type="text"
       placeholder="type / for more options"
       bind:value={inputText}
+      bind:this={usernameInput}
       on:keydown={handleKeyDown}
     />
   {/if}

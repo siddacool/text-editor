@@ -2,10 +2,12 @@
   import { getContext, onMount } from 'svelte';
   import type { Block, BlockContext } from '~/types';
   export let block: Block;
+  export let index: number;
   let textData = block.textData;
   let usernameInput;
 
   const blocks: BlockContext = getContext('blocks');
+  const addBlockPosition = getContext('addBlockPosition');
 
   const handleBlur = () => {
     blocks.modify(block.id, textData);
@@ -18,6 +20,13 @@
     sel.collapseToEnd();
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      usernameInput.blur();
+      addBlockPosition.forceSet(index);
+    }
+  };
+
   onMount(() => block.focus && setSelection());
 </script>
 
@@ -27,4 +36,5 @@
   bind:innerHTML={textData}
   on:blur={handleBlur}
   bind:this={usernameInput}
+  on:keydown={handleKeyDown}
 />

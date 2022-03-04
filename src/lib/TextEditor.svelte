@@ -5,13 +5,16 @@
   import { createBlocks } from '~/contexts/blocks';
   import AddNewBlock from './AddNewBlock.svelte';
   import ContentBlock from './ContentBlock.svelte';
+  import { createAddBlockPosition } from '~/contexts/add-block-position';
 
   export let value: BlockState = [];
   export let onChange: StateOnChange = (val) => {};
 
   const blocks = createBlocks(value);
+  const addBlockPosition = createAddBlockPosition();
 
   setContext('blocks', blocks);
+  setContext('addBlockPosition', addBlockPosition);
 
   const unsubscribe = blocks.subscribe((data) => {
     onChange(data);
@@ -59,13 +62,18 @@
     on:consider={handleDndConsider}
     on:finalize={handleDndFinalize}
   >
-    {#each items as block (block.id)}
-      <ContentBlock {block} {startDrag} {stopDrag} />
+    {#each items as block, index (block.id)}
+      <ContentBlock {block} {startDrag} {stopDrag} {index} />
+
+      {#if $addBlockPosition === null && index === items.length - 1}
+        <br />
+        <AddNewBlock onAdd={handleAddAction} />
+      {:else if ($addBlockPosition || $addBlockPosition === 0) && $addBlockPosition === index}
+        <br />
+        <AddNewBlock onAdd={handleAddAction} />
+      {/if}
     {/each}
   </section>
-  <br />
-
-  <AddNewBlock onAdd={handleAddAction} />
 
   <br />
   <br />

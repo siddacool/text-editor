@@ -13,19 +13,29 @@ export function createBlocks(initialState: BlockState) {
       config: {
         textData?: string;
         focus?: boolean;
+        at?: number;
       },
     ) => {
-      const { textData = 'yo', focus = false } = config || {};
+      const { textData = 'yo', focus = false, at = null } = config || {};
 
       return update((s) => {
         const newS = s.map((s) => ({ ...s, focus: false }));
 
-        newS.push({
-          id: `${Date.now()}`,
-          type,
-          textData,
-          focus,
-        });
+        if (at || at === 0) {
+          newS.splice(at + 1, 0, {
+            id: `${Date.now()}`,
+            type,
+            textData,
+            focus,
+          });
+        } else {
+          newS.push({
+            id: `${Date.now()}`,
+            type,
+            textData,
+            focus,
+          });
+        }
 
         return newS;
       });
