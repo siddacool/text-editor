@@ -17,8 +17,9 @@ export interface IBlockContext {
       focus?: boolean;
     },
   ) => void;
-  remove: (index: number) => void;
+  remove: (id: string) => void;
   modify: (id: string, val: string) => void;
+  turnInto: (id: string, type: string) => void;
 }
 
 export interface IAddBlockPositionContext {

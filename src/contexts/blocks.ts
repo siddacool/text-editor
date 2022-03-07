@@ -40,7 +40,7 @@ export function createBlocks(initialState: BlockState) {
         return newS;
       });
     },
-    remove: (index: number) => update((s) => s.filter((sOpt, i) => i !== index)),
+    remove: (id: string) => update((s) => s.filter((sOpt) => sOpt.id !== id)),
     modify: (id: string, val: string) =>
       update((s) => {
         return s.map((sOpt) => {
@@ -49,6 +49,18 @@ export function createBlocks(initialState: BlockState) {
           }
 
           sOpt.textData = formatStringToHTML(val);
+
+          return sOpt;
+        });
+      }),
+    turnInto: (id: string, type: string) =>
+      update((s) => {
+        return s.map((sOpt) => {
+          if (sOpt.id !== id) {
+            return sOpt;
+          }
+
+          sOpt.type = type;
 
           return sOpt;
         });

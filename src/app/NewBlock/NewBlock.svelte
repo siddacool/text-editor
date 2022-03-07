@@ -4,7 +4,7 @@
   import Menu from './Menu.svelte';
   const blocks: IBlockContext = getContext('blocks');
   const addBlockPosition: IAddBlockPositionContext = getContext('addBlockPosition');
-  export let onAdd;
+  export let onUpdate;
   let inputText = '';
   let showDropDown = false;
   let usernameInput;
@@ -14,7 +14,7 @@
     inputText = '';
 
     blocks.add(id, { focus: true, at: $addBlockPosition });
-    onAdd();
+    onUpdate();
     addBlockPosition.forceSet(null);
   };
 
@@ -24,7 +24,7 @@
     } else if (e.key === 'Enter') {
       e.preventDefault();
       blocks.add('plugin-div', { focus: true, at: $addBlockPosition, textData: inputText });
-      onAdd();
+      onUpdate();
       inputText = '';
       addBlockPosition.forceSet(null);
     }

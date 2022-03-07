@@ -17,6 +17,8 @@
   setContext('addBlockPosition', addBlockPosition);
 
   const unsubscribe = blocks.subscribe((data) => {
+    console.log(data);
+
     onChange(data);
   });
 
@@ -41,7 +43,7 @@
     dragDisabled = true;
   }
 
-  function handleAddAction() {
+  function handleBlocksUpdate() {
     console.log('yo');
 
     items = [...$blocks];
@@ -67,12 +69,12 @@
     on:finalize={handleDndFinalize}
   >
     {#each items as block, index (block.id)}
-      <ContentBlock {block} {startDrag} {stopDrag} {index} />
+      <ContentBlock {block} {startDrag} {stopDrag} {index} onUpdate={handleBlocksUpdate} />
 
       {#if $addBlockPosition === null && index === items.length - 1}
-        <NewBlock onAdd={handleAddAction} />
+        <NewBlock onUpdate={handleBlocksUpdate} />
       {:else if ($addBlockPosition || $addBlockPosition === 0) && $addBlockPosition === index}
-        <NewBlock onAdd={handleAddAction} />
+        <NewBlock onUpdate={handleBlocksUpdate} />
       {/if}
     {/each}
   </section>

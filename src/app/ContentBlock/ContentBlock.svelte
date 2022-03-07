@@ -6,20 +6,13 @@
   export let stopDrag;
   export let startDrag;
   export let index: number;
-  const { type } = block;
-  const { component } = Plugins.find((p) => p.id === type) || PluginDiv;
+  export let onUpdate;
+
+  $: PluginPull = Plugins.find((p) => p.id === block.type) || PluginDiv;
 </script>
 
 <div class="block">
-  <OptionsMenu {stopDrag} {startDrag} />
+  <OptionsMenu {stopDrag} {startDrag} {block} {onUpdate} />
 
-  <svelte:component this={component} {block} {index} />
+  <svelte:component this={PluginPull.component} {block} {index} />
 </div>
-
-<style lang="scss">
-  .block {
-    &.isActive {
-      background-color: aliceblue;
-    }
-  }
-</style>
