@@ -3,8 +3,8 @@
   import type { BlockState, StateOnChange } from '~/types';
   import { setContext, onDestroy } from 'svelte';
   import { createBlocks } from '~/contexts/blocks';
-  import AddNewBlock from './AddNewBlock.svelte';
-  import ContentBlock from './ContentBlock.svelte';
+  import NewBlock from './NewBlock';
+  import ContentBlock from './ContentBlock';
   import { createAddBlockPosition } from '~/contexts/add-block-position';
 
   export let value: BlockState = [];
@@ -70,9 +70,9 @@
       <ContentBlock {block} {startDrag} {stopDrag} {index} />
 
       {#if $addBlockPosition === null && index === items.length - 1}
-        <AddNewBlock onAdd={handleAddAction} />
+        <NewBlock onAdd={handleAddAction} />
       {:else if ($addBlockPosition || $addBlockPosition === 0) && $addBlockPosition === index}
-        <AddNewBlock onAdd={handleAddAction} />
+        <NewBlock onAdd={handleAddAction} />
       {/if}
     {/each}
   </section>
@@ -94,18 +94,15 @@
     background-color: #fff;
     max-width: 800px;
     margin-left: auto;
+    margin-right: auto;
     position: relative;
     height: calc(100vh - 60px);
     margin-top: 30px;
     overflow: auto;
     z-index: 100;
-    padding-left: 40px;
+    padding-left: 50px;
     border-radius: 10px;
     border: 1px solid #bcbcbc;
-
-    @media (min-width: 1000px) {
-      margin-right: auto;
-    }
   }
 
   section {

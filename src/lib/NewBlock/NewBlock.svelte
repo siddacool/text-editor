@@ -1,8 +1,7 @@
 <script lang="ts">
   import type { IAddBlockPositionContext, IBlockContext } from '~/types';
   import { getContext, onMount } from 'svelte';
-  import { Plugins } from '~/Plugins';
-  import AddMenu from './AddMenu.svelte';
+  import Menu from './Menu.svelte';
   const blocks: IBlockContext = getContext('blocks');
   const addBlockPosition: IAddBlockPositionContext = getContext('addBlockPosition');
   export let onAdd;
@@ -36,7 +35,7 @@
 
 <div>
   {#if showDropDown}
-    <AddMenu {handleAdd} />
+    <Menu {handleAdd} />
   {:else}
     <input
       type="text"
