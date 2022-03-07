@@ -14,7 +14,7 @@
   };
 </script>
 
-{#await import('$lib/TextEditor.svelte') then c}
+{#await import('~/app/TextEditor.svelte') then c}
   <svelte:component this={c.default} value={state} {onChange} />
 {/await}
 
