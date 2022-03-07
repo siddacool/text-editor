@@ -65,5 +65,25 @@ export function createBlocks(initialState: BlockState) {
           return sOpt;
         });
       }),
+    duplicate: (blockId: string) => {
+      return update((s) => {
+        const newS = s.map((s) => ({ ...s, focus: false }));
+        const findToCopy = newS.find((s) => s.id === blockId);
+
+        if (findToCopy) {
+          const at = newS.findIndex((s) => s.id === blockId);
+          const { textData, type } = findToCopy;
+
+          newS.splice(at + 1, 0, {
+            id: `${Date.now()}`,
+            type,
+            textData,
+            focus: true,
+          });
+        }
+
+        return newS;
+      });
+    },
   };
 }

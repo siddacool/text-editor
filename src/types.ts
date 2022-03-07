@@ -20,6 +20,7 @@ export interface IBlockContext {
   remove: (id: string) => void;
   modify: (id: string, val: string) => void;
   turnInto: (id: string, type: string) => void;
+  duplicate: (id: string) => void;
 }
 
 export interface IAddBlockPositionContext {
