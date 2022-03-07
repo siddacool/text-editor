@@ -1,12 +1,12 @@
 <script lang="ts">
   import { getContext, onMount } from 'svelte';
-  import type { Block, BlockContext } from '~/types';
-  export let block: Block;
+  import type { IBlock, IBlockContext } from '~/types';
+  export let block: IBlock;
   export let index: number;
   let textData = block.textData;
   let usernameInput;
 
-  const blocks: BlockContext = getContext('blocks');
+  const blocks: IBlockContext = getContext('blocks');
   const addBlockPosition = getContext('addBlockPosition');
 
   const handleBlur = () => {

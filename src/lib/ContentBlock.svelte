@@ -1,7 +1,7 @@
 <script lang="ts">
   import { PluginDiv, Plugins } from '~/Plugins';
-  import type { Block } from '~/types';
-  export let block: Block;
+  import type { IBlock } from '~/types';
+  export let block: IBlock;
   export let stopDrag;
   export let startDrag;
   export let index: number;

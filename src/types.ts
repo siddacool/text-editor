@@ -1,14 +1,14 @@
-export interface Block {
+export interface IBlock {
   id: string;
   type: string;
   textData: string;
   focus?: boolean;
 }
 
-export type BlockState = Block[];
+export type BlockState = IBlock[];
 export type StateOnChange = (value: BlockState) => void;
 
-export interface BlockContext {
+export interface IBlockContext {
   subscribe: any;
   add: (
     type: string,
@@ -19,4 +19,9 @@ export interface BlockContext {
   ) => void;
   remove: (index: number) => void;
   modify: (id: string, val: string) => void;
+}
+
+export interface IAddBlockPositionContext {
+  subscribe: any;
+  forceSet: (index: number) => void;
 }
