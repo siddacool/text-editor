@@ -77,6 +77,10 @@
         <NewBlock onUpdate={handleBlocksUpdate} />
       {/if}
     {/each}
+
+    {#if !items.length}
+      <NewBlock onUpdate={handleBlocksUpdate} />
+    {/if}
   </section>
 
   <br />

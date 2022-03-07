@@ -98,6 +98,7 @@
     }
 
     svg {
+      opacity: 0.5;
       width: 17px;
       height: 17px;
     }
