@@ -1,40 +1,23 @@
 <script lang="ts">
+  import Dropdown from '$lib/Dropdown.svelte';
   import { Plugins } from '~/Plugins';
   export let handleAdd;
+  export let showDropDown;
+  export let onClose;
 </script>
 
-<ul class="menu">
+<Dropdown class="menu" open={showDropDown} {onClose}>
   {#each Plugins as { id, name, description }}
     <li on:click={() => handleAdd(id)}>
       <div class="icon">{name}</div>
       <div class="description">{description}</div>
     </li>
   {/each}
-</ul>
+</Dropdown>
 
 <style lang="scss">
   .menu {
-    display: flex;
-    border: 1px solid #bcbcbc;
-    max-width: 300px;
-    border-radius: 6px;
-    overflow: auto;
-    max-height: 300px;
-    background-color: #fff;
-    margin: 0;
-    padding: 0;
-    flex-direction: column;
-    margin-top: 8px;
-
     li {
-      padding: 6px;
-      display: flex;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #f3f3f3;
-      }
-
       .icon {
         background-color: #b7b7b7;
         height: 40px;

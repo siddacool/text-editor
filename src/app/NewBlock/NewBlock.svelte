@@ -30,13 +30,16 @@
     }
   };
 
+  const handleCloseMenu = () => {
+    showDropDown = false;
+  };
+
   onMount(() => usernameInput.focus());
 </script>
 
 <div>
-  {#if showDropDown}
-    <Menu {handleAdd} />
-  {:else}
+  <Menu {handleAdd} {showDropDown} onClose={handleCloseMenu} />
+  {#if !showDropDown}
     <input
       type="text"
       placeholder="type / for more options"

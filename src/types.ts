@@ -25,3 +25,18 @@ export interface IAddBlockPositionContext {
   subscribe: any;
   forceSet: (index: number) => void;
 }
+
+export interface IDropdownItemActionOption {
+  value: string;
+  label: string;
+  preventClose?: boolean;
+  props?: object;
+}
+
+export interface IDropdownItem {
+  value: string;
+  label: string;
+  action?: (options: IDropdownItemActionOption) => void;
+  preventClose?: boolean;
+  props?: object;
+}
